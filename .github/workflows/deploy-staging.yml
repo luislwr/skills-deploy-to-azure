@@ -80,6 +80,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Create resource group
+        run: |
+          az group create --location "East US" --name cd-with-actions --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+
       - uses: azure/docker-login@v1
         with:
           login-server: ${{env.IMAGE_REGISTRY_URL}}
